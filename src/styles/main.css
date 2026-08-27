@@ -737,6 +737,71 @@ button {
   margin-bottom: 8px;
 }
 
+/* ============ 重置进度 ============ */
+.reset-link {
+  display: block;
+  margin: 20px auto 0;
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  font-size: 13px;
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+.reset-link:active {
+  opacity: 1;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(91, 74, 63, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  padding: 20px;
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 26px;
+  padding: 26px 22px;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 12px 34px rgba(91, 74, 63, 0.3);
+  animation: pop 0.25s ease-out;
+}
+
+.modal-icon {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+.modal-title {
+  font-size: 19px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.modal-text {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+
+.modal-actions {
+  display: grid;
+  gap: 10px;
+}
+
 /* 简单淡入 */
 .fade-in {
   animation: fadeIn 0.3s ease-out;

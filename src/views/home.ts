@@ -1,5 +1,5 @@
 import { mount, on } from '../dom'
-import { clearedThemeCount, isFinalCleared, isSoundOn, setSoundOn, totalScore } from '../storage'
+import { clearedThemeCount, isFinalCleared, isSoundOn, resetSave, setSoundOn, totalScore } from '../storage'
 import { playClick } from '../audio'
 
 function soundBadge(): string {
@@ -33,6 +33,19 @@ export function renderHome(): void {
       <div class="home-feat">🎁 答对攒分，通关收勋章</div>
       <div class="home-feat">💾 进度自动保存，下次继续</div>
       <div class="text-note">不禁止用网 · 不抵制电子产品 —— 学会择优使用、理性把控</div>
+      <button class="reset-link" data-reset>🔁 清空进度，重新开始</button>
+    </div>
+
+    <div class="modal-overlay" data-modal hidden>
+      <div class="modal">
+        <div class="modal-icon">🧹</div>
+        <div class="modal-title">确定要重新开始吗？</div>
+        <p class="modal-text">当前已获得的勋章、积分都会清零，关卡进度会重置回第 1 关。</p>
+        <div class="modal-actions">
+          <button class="big-btn secondary" data-modal-cancel>再想想</button>
+          <button class="big-btn" data-modal-ok>清空并重新开始</button>
+        </div>
+      </div>
     </div>
   `)
 
@@ -44,5 +57,27 @@ export function renderHome(): void {
     setSoundOn(!isSoundOn())
     playClick()
     btn.textContent = soundBadge()
+  })
+
+  // 清空进度（带确认弹窗）
+  const modal = root.querySelector<HTMLElement>('[data-modal]')
+  const showModal = (show: boolean): void => {
+    if (modal) modal.hidden = !show
+  }
+  on<HTMLButtonElement>(root, '[data-reset]', () => {
+    playClick()
+    showModal(true)
+  })
+  on<HTMLButtonElement>(root, '[data-modal-cancel]', () => {
+    playClick()
+    showModal(false)
+  })
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) showModal(false) // 点遮罩空白处取消
+  })
+  on<HTMLButtonElement>(root, '[data-modal-ok]', () => {
+    resetSave()
+    playClick()
+    renderHome()
   })
 }

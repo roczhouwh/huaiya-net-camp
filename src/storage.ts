@@ -126,3 +126,13 @@ export function isFinalCleared(): boolean {
 export function clearedThemeCount(): number {
   return [1, 2, 3, 4].filter((id) => isLevelCleared(id)).length
 }
+
+/** 清空存档、全部重新开始（含勋章/积分/昵称/音效开关） */
+export function resetSave(): void {
+  try {
+    localStorage.removeItem(KEY)
+  } catch {
+    // 隐私模式可能抛错，忽略
+  }
+  cache = { ...DEFAULT, clearedLevels: [], bestScores: {} }
+}
