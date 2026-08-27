@@ -175,7 +175,11 @@ function paintResult(q: Question, pick: number[], correct: boolean): void {
   host.innerHTML = `
     <div class="feedback ${correct ? 'correct' : 'wrong'} fade-in">
       <div class="fb-title">${title}</div>
-      ${correct ? '<div class="fb-text">回答正确，记 <b>+1</b> 分！</div>' : `<div class="fb-text">${q.explain}</div>`}
+      ${
+        correct
+          ? `<div class="fb-text">回答正确，记 <b>+1</b> 分！</div><div class="fb-explain">📖 ${q.explain}</div>`
+          : `<div class="fb-text">${q.explain}</div>`
+      }
       <button class="big-btn ${correct ? 'success' : 'secondary'} action-btn" data-next>
         ${correct ? '➡️ 下一题' : '我记住了 ☀️'}
       </button>

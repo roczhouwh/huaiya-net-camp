@@ -470,6 +470,17 @@ button {
   line-height: 1.65;
 }
 
+/* 答对的解析（在 +1 分下方，浅色区分） */
+.feedback .fb-explain {
+  margin-top: 6px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #ffffffcc;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
 /* 星星粒子动画（答对） */
 .particles {
   position: relative;
