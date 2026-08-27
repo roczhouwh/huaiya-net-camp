@@ -3,3 +3,6 @@ dist/
 .DS_Store
 *.local
 .vercel/
+
+# AI 生成的题目配图（未定稿前不纳入版本控制；定稿后再 git add -f 提交）
+assets/images/*.png
