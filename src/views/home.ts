@@ -1,5 +1,5 @@
 import { mount, on } from '../dom'
-import { clearedThemeCount, isFinalCleared, isSoundOn, resetSave, setSoundOn, totalScore } from '../storage'
+import { clearedMedalCount, clearedThemeCount, isFinalCleared, isSoundOn, resetSave, setSoundOn, totalScore } from '../storage'
 import { playClick } from '../audio'
 
 function soundBadge(): string {
@@ -11,7 +11,6 @@ export function renderHome(): void {
     <div class="home-page fade-in">
       <div class="topbar">
         <button class="icon-btn" data-sound title="音效开关">${soundBadge()}</button>
-        <a href="#/medals" class="icon-btn" title="勋章中心">🎖️</a>
       </div>
 
       <div class="home-hero">
@@ -24,7 +23,9 @@ export function renderHome(): void {
         <div class="home-chip"><span class="chip-emoji">${clearedThemeCount()}/4</span>主题关</div>
         <div class="home-chip"><span class="chip-emoji">${isFinalCleared() ? '🏆' : '🔒'}</span>终极关</div>
         <div class="home-chip"><span class="chip-emoji">${totalScore()}</span>总积分</div>
-        <div class="home-chip"><span class="chip-emoji">🌟</span>勋章</div>
+        <button class="home-chip clickable" data-medal title="勋章中心">
+          <span class="chip-emoji">🎖️</span><span>勋章 ${clearedMedalCount()}/5</span>
+        </button>
       </div>
 
       <button class="big-btn home-start" style="margin-top:18px">🚀 开始闯关</button>
@@ -52,6 +53,10 @@ export function renderHome(): void {
   on<HTMLButtonElement>(root, '.home-start', () => {
     playClick()
     window.location.hash = '#/hall'
+  })
+  on<HTMLButtonElement>(root, '[data-medal]', () => {
+    playClick()
+    window.location.hash = '#/medals'
   })
   on<HTMLButtonElement>(root, '[data-sound]', (btn) => {
     setSoundOn(!isSoundOn())

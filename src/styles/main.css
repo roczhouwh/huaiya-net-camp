@@ -190,6 +190,17 @@ button {
   margin-bottom: 4px;
 }
 
+/* 勋章方块可点（去按钮默认样式） */
+.home-chip.clickable {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.home-chip.clickable:active {
+  transform: scale(0.95);
+}
+
 .home-feat {
   background: #fff;
   border-radius: var(--radius-md);

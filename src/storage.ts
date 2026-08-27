@@ -127,6 +127,12 @@ export function clearedThemeCount(): number {
   return [1, 2, 3, 4].filter((id) => isLevelCleared(id)).length
 }
 
+/** 已收集勋章数（= 已通关关卡数，共 5 枚） */
+export function clearedMedalCount(): number {
+  const sv = loadSave()
+  return LEVELS.filter((l) => sv.clearedLevels.includes(l.id)).length
+}
+
 /** 清空存档、全部重新开始（含勋章/积分/昵称/音效开关） */
 export function resetSave(): void {
   try {
