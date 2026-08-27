@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 768">
+  <!-- 关2-题3：刷视频弹出低俗猎奇弹窗，小学生皱眉疑惑 -->
+  <rect width="1024" height="768" fill="#EAF3FA"/>
+  <ellipse cx="150" cy="120" rx="80" ry="30" fill="#FFFFFF" opacity=".8"/>
+  <ellipse cx="880" cy="640" rx="90" ry="32" fill="#FFFFFF" opacity=".7"/>
+  <!-- 小学生（左侧，手持手机） -->
+  <rect x="180" y="420" width="220" height="220" rx="60" fill="#8FA8D8"/>
+  <circle cx="290" cy="330" r="78" fill="#FFD9B3"/>
+  <path d="M212 316a78 78 0 0 1 156 0v-16a78 48 0 0 0-156 0z" fill="#5B4A3F"/>
+  <!-- 皱眉疑惑表情 -->
+  <circle cx="260" cy="332" r="7" fill="#3A3238"/>
+  <circle cx="320" cy="332" r="7" fill="#3A3238"/>
+  <path d="M244 312l24-8M312 304l24 8" stroke="#3A3238" stroke-width="6" stroke-linecap="round"/>
+  <path d="M272 368q18-10 36 0" stroke="#3A3238" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <ellipse cx="238" cy="354" rx="11" ry="7" fill="#FFB3A7" opacity=".7"/>
+  <ellipse cx="342" cy="354" rx="11" ry="7" fill="#FFB3A7" opacity=".7"/>
+  <!-- 疑问气泡 -->
+  <circle cx="400" cy="220" r="34" fill="#FFFFFF" stroke="#B9D0E0" stroke-width="5"/>
+  <text x="400" y="236" font-size="44" text-anchor="middle" fill="#7FA8C9" font-family="sans-serif" font-weight="bold">?</text>
+  <circle cx="370" cy="262" r="10" fill="#FFFFFF" stroke="#B9D0E0" stroke-width="4"/>
+  <!-- 举手机的手臂 -->
+  <rect x="380" y="470" width="130" height="40" rx="20" fill="#8FA8D8" transform="rotate(-18 380 470)"/>
+  <circle cx="505" cy="452" r="22" fill="#FFD9B3"/>
+  <!-- 手机 -->
+  <g transform="rotate(-8 600 400)">
+    <rect x="520" y="220" width="220" height="420" rx="30" fill="#4A5A6A"/>
+    <rect x="536" y="252" width="188" height="356" rx="16" fill="#E4F0F8"/>
+  </g>
+  <!-- 弹窗（低俗猎奇，抽象表现） -->
+  <g transform="rotate(-8 620 360)">
+    <rect x="556" y="290" width="190" height="150" rx="18" fill="#FFFFFF" stroke="#E8A0A0" stroke-width="6"/>
+    <rect x="556" y="290" width="190" height="40" rx="18" fill="#F6C0C0"/>
+    <circle cx="726" cy="310" r="10" fill="#FFFFFF"/>
+    <path d="M722 306l8 8M730 306l-8 8" stroke="#C96F6F" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- 弹窗内夸张图标 -->
+    <circle cx="620" cy="372" r="26" fill="#FFD9B3"/>
+    <circle cx="612" cy="368" r="5" fill="#3A3238"/>
+    <circle cx="630" cy="366" r="7" fill="#3A3238"/>
+    <ellipse cx="622" cy="386" rx="9" ry="7" fill="#C96F6F"/>
+    <path d="M664 356h60M664 376h44" stroke="#E8C9C9" stroke-width="10" stroke-linecap="round"/>
+    <rect x="580" y="408" width="140" height="18" rx="9" fill="#F3DCDC"/>
+  </g>
+  <!-- 划走手势箭头（暗示正确做法） -->
+  <path d="M770 560q60 20 110-10" stroke="#8FD694" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="2 18"/>
+  <path d="M870 530l26 14-24 18z" fill="#8FD694"/>
+  <!-- 地面 -->
+  <rect x="0" y="660" width="1024" height="108" fill="#D8E8F0"/>
+  <ellipse cx="290" cy="668" rx="150" ry="16" fill="#C4DCE8"/>
+</svg>

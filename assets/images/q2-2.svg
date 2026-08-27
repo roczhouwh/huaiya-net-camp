@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 768">
+  <!-- 关2-题2：短视频恶搞玩梗场景，浮夸搞笑、无正能量 -->
+  <rect width="1024" height="768" fill="#FDEFF3"/>
+  <!-- 散乱彩纸（浮夸氛围） -->
+  <g opacity=".85">
+    <rect x="120" y="120" width="26" height="14" rx="4" fill="#FFD966" transform="rotate(24 120 120)"/>
+    <rect x="850" y="150" width="26" height="14" rx="4" fill="#9AD0F5" transform="rotate(-30 850 150)"/>
+    <rect x="180" y="620" width="26" height="14" rx="4" fill="#8FD694" transform="rotate(40 180 620)"/>
+    <rect x="820" y="600" width="26" height="14" rx="4" fill="#F6A6B8" transform="rotate(-16 820 600)"/>
+    <circle cx="240" cy="180" r="9" fill="#B9A8D8"/>
+    <circle cx="790" cy="220" r="9" fill="#FFD966"/>
+    <circle cx="140" cy="420" r="9" fill="#F6A6B8"/>
+    <circle cx="890" cy="420" r="9" fill="#8FD694"/>
+  </g>
+  <!-- 手机（竖屏短视频界面） -->
+  <rect x="352" y="100" width="320" height="580" rx="40" fill="#4A5A6A"/>
+  <rect x="372" y="140" width="280" height="500" rx="22" fill="#FFF0F5"/>
+  <rect x="472" y="116" width="80" height="10" rx="5" fill="#2E3A44"/>
+  <!-- 屏幕：恶搞鬼脸主角 -->
+  <circle cx="512" cy="330" r="72" fill="#FFD9B3"/>
+  <!-- 大小眼 + 吐舌 -->
+  <circle cx="482" cy="312" r="8" fill="#3A3238"/>
+  <circle cx="544" cy="306" r="14" fill="#3A3238"/>
+  <circle cx="548" cy="302" r="4" fill="#FFFFFF"/>
+  <path d="M476 352q36 20 72-6" stroke="#3A3238" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <ellipse cx="522" cy="368" rx="14" ry="18" fill="#F08A9B"/>
+  <!-- 浮夸眉毛 -->
+  <path d="M462 292l22-14M536 284l24-18" stroke="#3A3238" stroke-width="6" stroke-linecap="round"/>
+  <!-- 鸡冠发型 -->
+  <path d="M470 264q-6-34 20-40-2 20 8 26 4-32 26-34-4 22 6 30 10-24 26-20-10 26-22 34z" fill="#E8907A"/>
+  <!-- “哈”字气泡 -->
+  <g font-family="sans-serif" font-weight="bold">
+    <rect x="392" y="440" width="64" height="56" rx="16" fill="#FFD966"/>
+    <text x="424" y="480" font-size="36" text-anchor="middle" fill="#A8662A">哈</text>
+    <rect x="470" y="456" width="64" height="56" rx="16" fill="#F6A6B8"/>
+    <text x="502" y="496" font-size="36" text-anchor="middle" fill="#A85568">哈</text>
+    <rect x="548" y="440" width="64" height="56" rx="16" fill="#9AD0F5"/>
+    <text x="580" y="480" font-size="36" text-anchor="middle" fill="#3F6E9E">哈</text>
+  </g>
+  <!-- 短视频底栏图标 -->
+  <circle cx="400" cy="580" r="14" fill="#E7B8C9"/>
+  <rect x="440" y="572" width="150" height="14" rx="7" fill="#EBD3DE"/>
+  <rect x="440" y="598" width="100" height="12" rx="6" fill="#EBD3DE"/>
+  <!-- 两侧无聊表情的小学生 -->
+  <rect x="130" y="560" width="130" height="90" rx="36" fill="#B9D8B9"/>
+  <circle cx="195" cy="518" r="48" fill="#FFD9B3"/>
+  <path d="M147 512a48 48 0 0 1 96 0v-10a48 30 0 0 0-96 0z" fill="#5B4A3F"/>
+  <path d="M172 516h18M202 516h18" stroke="#3A3238" stroke-width="5" stroke-linecap="round"/>
+  <path d="M183 544h24" stroke="#3A3238" stroke-width="5" stroke-linecap="round"/>
+  <text x="250" y="500" font-size="40" fill="#8FA8C8" font-family="sans-serif">…</text>
+  <rect x="764" y="560" width="130" height="90" rx="36" fill="#F6C9A8"/>
+  <circle cx="829" cy="518" r="48" fill="#FFD9B3"/>
+  <path d="M781 512a48 48 0 0 1 96 0v-10a48 30 0 0 0-96 0z" fill="#3F342C"/>
+  <path d="M806 516h18M836 516h18" stroke="#3A3238" stroke-width="5" stroke-linecap="round"/>
+  <path d="M817 544h24" stroke="#3A3238" stroke-width="5" stroke-linecap="round"/>
+  <text x="884" y="500" font-size="40" fill="#C9A86F" font-family="sans-serif">…</text>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 768">
+  <!-- 关3-题3：写完作业后端正坐姿，限时看科普/玩益智游戏，阳光自律 -->
+  <rect width="1024" height="768" fill="#FFF8E7"/>
+  <!-- 阳光 -->
+  <circle cx="130" cy="120" r="48" fill="#FFD966"/>
+  <g stroke="#FFD966" stroke-width="9" stroke-linecap="round">
+    <line x1="130" y1="44" x2="130" y2="24"/><line x1="206" y1="120" x2="226" y2="120"/>
+    <line x1="54" y1="120" x2="34" y2="120"/><line x1="184" y1="66" x2="198" y2="52"/>
+    <line x1="76" y1="66" x2="62" y2="52"/>
+  </g>
+  <!-- 作业完成清单（打勾） -->
+  <rect x="740" y="90" width="220" height="200" rx="16" fill="#FFFFFF" stroke="#E8D9A8" stroke-width="6"/>
+  <g stroke="#C9BFA0" stroke-width="6" stroke-linecap="round">
+    <line x1="800" y1="140" x2="930" y2="140"/><line x1="800" y1="190" x2="930" y2="190"/><line x1="800" y1="240" x2="930" y2="240"/>
+  </g>
+  <g stroke="#5FAE66" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M758 132l12 14 20-24"/><path d="M758 182l12 14 20-24"/><path d="M758 232l12 14 20-24"/>
+  </g>
+  <!-- 书桌 -->
+  <rect x="212" y="540" width="600" height="30" rx="12" fill="#D9A066"/>
+  <rect x="252" y="570" width="26" height="140" rx="10" fill="#C08A52"/>
+  <rect x="746" y="570" width="26" height="140" rx="10" fill="#C08A52"/>
+  <!-- 平板：科普画面 -->
+  <rect x="352" y="330" width="320" height="200" rx="20" fill="#4A5A6A"/>
+  <rect x="368" y="346" width="288" height="168" rx="12" fill="#DFF1E4"/>
+  <circle cx="450" cy="420" r="34" fill="#7FC8E8"/>
+  <ellipse cx="450" cy="420" rx="54" ry="12" fill="none" stroke="#B8E6F5" stroke-width="7" transform="rotate(-16 450 420)"/>
+  <path d="M560 460q24-20 46-4-20 24-46 4z" fill="#8FD694"/>
+  <path d="M540 380l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2z" fill="#FFD966"/>
+  <!-- 计时器（限时） -->
+  <circle cx="700" cy="320" r="40" fill="#FFFFFF" stroke="#E8907A" stroke-width="7"/>
+  <path d="M700 320v-24M700 320l16 10" stroke="#E8907A" stroke-width="6" stroke-linecap="round"/>
+  <rect x="686" y="270" width="28" height="12" rx="6" fill="#E8907A"/>
+  <!-- 小学生（端正坐姿背影） -->
+  <rect x="432" y="500" width="160" height="90" rx="40" fill="#8FD694"/>
+  <circle cx="512" cy="452" r="58" fill="#FFD9B3"/>
+  <path d="M454 444a58 58 0 0 1 116 0v-12a58 36 0 0 0-116 0z" fill="#5B4A3F"/>
+  <!-- 合上整齐的作业本 -->
+  <rect x="222" y="500" width="110" height="24" rx="8" fill="#9AD0F5"/>
+  <rect x="230" y="478" width="94" height="22" rx="8" fill="#F6A6B8"/>
+  <!-- 绿植 -->
+  <rect x="860" y="460" width="64" height="56" rx="12" fill="#E8907A"/>
+  <path d="M892 460q-28-36-4-64 6 30 18 44 4-40 26-50-2 38-10 54 18-26 36-22-14 30-66 38z" fill="#8FD694"/>
+  <!-- 大拇指贴纸 -->
+  <circle cx="250" cy="380" r="34" fill="#FFFFFF" stroke="#F6C9A8" stroke-width="5"/>
+  <path d="M238 392v-14q0-6 6-6h6l6-14q2-6 8-4t4 10l-2 8h12q6 0 5 6l-4 14q-1 6-7 6h-28q-6 0-6-6z" fill="#F6C9A8"/>
+</svg>

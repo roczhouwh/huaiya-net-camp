@@ -15,9 +15,10 @@
 
 - Vite + TypeScript + 原生 DOM，**不引入框架、UI 库、游戏引擎**
 - 题库数据驱动：题目/关卡全部在 `src/data/`，扩题只改数据文件
-- hash 路由（纯静态托管），`vite.config.ts` 必须 `base: './'`（离线双击 + 任意子路径托管）
+- hash 路由（纯静态托管），`vite.config.ts` 必须 `base: './'`；**仅线上部署，不做离线双击版本**
 - **无语音朗读功能**（需求评审砍掉，勿加回）；音效全部 WebAudio 合成，不引入音频文件
-- 题目配图：`assets/images/q{关}-{题}.png`（q1-1 ~ q4-4），开发期为同路径 SVG 占位，AI 图同名替换即生效
+- 题目配图：`assets/images/q{关}-{题}.svg`（首发手绘 SVG，q1-1 ~ q4-4）；数据层不存扩展名，`import.meta.glob` 前缀解析、png 优先，AI 精绘 PNG 同名放入即自动替换
+- 总积分 = Σ 各关最高分（不单独存储）；存档带 `version` 字段
 - 存档 localStorage key `huaiya-save`；证书默认昵称「小槐芽」
 - 内容底线：无暴力低俗恐怖、无批评说教话术、不全盘否定游戏短视频
 

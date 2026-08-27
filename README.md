@@ -19,7 +19,7 @@
 
 ## 在线游玩
 
-🌐 [huaiya.535334587.xyz](https://huaiya.535334587.xyz)
+🌐 huaiya.535334587.xyz（待上线）
 
 电脑、平板、手机浏览器均可访问。
 
@@ -28,7 +28,7 @@
 ```bash
 npm install
 npm run dev      # 开发
-npm run build    # 构建（相对路径，产物 dist/ 解压双击 index.html 也能玩）
+npm run build    # 构建
 ```
 
 ## 技术栈

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 768">
+  <!-- 关2-题4：长时间低头刷短视频，眼神涣散、慵懒松懈 -->
+  <rect width="1024" height="768" fill="#F0EEF8"/>
+  <!-- 挂钟（时间流逝） -->
+  <circle cx="850" cy="150" r="64" fill="#FFFFFF" stroke="#C9BFE0" stroke-width="8"/>
+  <circle cx="850" cy="150" r="8" fill="#7A6E9E"/>
+  <path d="M850 150V108M850 150l30 16" stroke="#7A6E9E" stroke-width="8" stroke-linecap="round"/>
+  <!-- 沙发/豆袋 -->
+  <ellipse cx="440" cy="640" rx="300" ry="90" fill="#C9BFE0"/>
+  <ellipse cx="440" cy="610" rx="280" ry="80" fill="#D8D0EA"/>
+  <!-- 慵懒小学生（瘫坐低头） -->
+  <rect x="330" y="480" width="230" height="150" rx="70" fill="#A8B8D8" transform="rotate(8 330 480)"/>
+  <circle cx="420" cy="440" r="72" fill="#FFD9B3"/>
+  <path d="M348 428a72 72 0 0 1 144 0v-14a72 44 0 0 0-144 0z" fill="#4A3E35"/>
+  <!-- 涣散眼神（半闭眼+小螺旋） -->
+  <path d="M382 444q12 8 24 0M436 444q12 8 24 0" stroke="#3A3238" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M388 424q10-6 20 0M440 424q10-6 20 0" stroke="#8A7E75" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M406 476q14 8 28 0" stroke="#3A3238" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- 黑眼圈暗示疲惫 -->
+  <ellipse cx="394" cy="458" rx="12" ry="5" fill="#D8B8A8" opacity=".8"/>
+  <ellipse cx="448" cy="458" rx="12" ry="5" fill="#D8B8A8" opacity=".8"/>
+  <!-- 双手捧手机（低头姿势） -->
+  <rect x="480" y="520" width="150" height="90" rx="20" fill="#4A5A6A" transform="rotate(14 480 520)"/>
+  <rect x="492" y="532" width="126" height="66" rx="10" fill="#B9C8E8" transform="rotate(14 492 532)"/>
+  <!-- 屏幕光映脸 -->
+  <ellipse cx="470" cy="500" rx="40" ry="24" fill="#C9D8F0" opacity=".45"/>
+  <!-- 屏幕里滚动的视频条 -->
+  <g transform="rotate(14 492 532)">
+    <rect x="500" y="540" width="110" height="12" rx="6" fill="#8FA8D8"/>
+    <rect x="500" y="560" width="80" height="12" rx="6" fill="#A8BCE0"/>
+    <rect x="500" y="580" width="96" height="12" rx="6" fill="#8FA8D8"/>
+  </g>
+  <!-- Zzz/迷糊符号 -->
+  <text x="560" y="400" font-size="40" fill="#9A8EC2" font-family="sans-serif" font-weight="bold" transform="rotate(10 560 400)">z</text>
+  <text x="592" y="372" font-size="30" fill="#B0A4D4" font-family="sans-serif" font-weight="bold" transform="rotate(10 592 372)">z</text>
+  <!-- 散落的书本（被冷落的学习） -->
+  <g transform="rotate(-8 170 660)">
+    <rect x="110" y="640" width="120" height="22" rx="6" fill="#F6A6B8"/>
+    <rect x="122" y="618" width="100" height="22" rx="6" fill="#9AD0F5"/>
+  </g>
+  <rect x="740" y="650" width="110" height="22" rx="6" fill="#C9D8A8" transform="rotate(6 740 650)"/>
+  <!-- 枯萎小盆栽 -->
+  <rect x="880" y="600" width="60" height="52" rx="10" fill="#D8A88A"/>
+  <path d="M910 600q-20-30-6-52M910 600q16-34 4-56" stroke="#A8B89A" stroke-width="6" fill="none" stroke-linecap="round"/>
+</svg>

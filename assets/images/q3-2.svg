@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 768">
+  <!-- 关3-题2：夜晚卧室，关灯躺床亮屏玩手机 -->
+  <rect width="1024" height="768" fill="#2E3A5C"/>
+  <!-- 窗外月亮星星 -->
+  <rect x="720" y="70" width="220" height="180" rx="16" fill="#24304E" stroke="#4A5A80" stroke-width="8"/>
+  <line x1="830" y1="70" x2="830" y2="250" stroke="#4A5A80" stroke-width="8"/>
+  <path d="M900 120a34 34 0 1 0 12 50 26 26 0 1 1-12-50z" fill="#FFE9A8"/>
+  <circle cx="770" cy="110" r="5" fill="#FFE9A8"/>
+  <circle cx="800" cy="150" r="4" fill="#FFE9A8"/>
+  <circle cx="880" cy="200" r="5" fill="#FFE9A8"/>
+  <!-- 星星点缀 -->
+  <circle cx="120" cy="100" r="4" fill="#8FA0C8"/>
+  <circle cx="200" cy="160" r="3" fill="#8FA0C8"/>
+  <circle cx="90" cy="220" r="4" fill="#8FA0C8"/>
+  <circle cx="300" cy="90" r="3" fill="#8FA0C8"/>
+  <!-- 床 -->
+  <rect x="120" y="480" width="780" height="60" rx="20" fill="#8A7AA8"/>
+  <rect x="120" y="540" width="780" height="130" rx="24" fill="#6E5F8E"/>
+  <rect x="120" y="480" width="120" height="190" rx="24" fill="#5B4D78"/>
+  <!-- 枕头 -->
+  <rect x="170" y="440" width="180" height="60" rx="26" fill="#E8E0F0"/>
+  <!-- 被子 -->
+  <path d="M300 520q120-50 300-20t300 10v160H300z" fill="#9A8AC2"/>
+  <path d="M300 520q120-50 300-20t300 10" fill="none" stroke="#B0A4D4" stroke-width="8"/>
+  <!-- 躺着的小学生（头露被外） -->
+  <circle cx="360" cy="470" r="58" fill="#FFD9B3"/>
+  <path d="M302 462a58 58 0 0 1 116 0v-12a58 36 0 0 0-116 0z" fill="#4A3E35"/>
+  <!-- 半睁疲惫眼 -->
+  <path d="M336 472q10 7 20 0M376 472q10 7 20 0" stroke="#3A3238" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="346" cy="486" rx="10" ry="4" fill="#D8B8A8"/>
+  <ellipse cx="386" cy="486" rx="10" ry="4" fill="#D8B8A8"/>
+  <!-- 被窝里举着亮屏手机 -->
+  <rect x="470" y="440" width="70" height="120" rx="14" fill="#3A4654" transform="rotate(-18 470 440)"/>
+  <rect x="478" y="452" width="54" height="96" rx="8" fill="#C9E4F5" transform="rotate(-18 478 452)"/>
+  <!-- 手机蓝光照亮周围 -->
+  <ellipse cx="480" cy="480" rx="130" ry="90" fill="#9AC8E8" opacity=".22"/>
+  <ellipse cx="400" cy="470" rx="70" ry="50" fill="#B9DCF0" opacity=".25"/>
+  <!-- 床头柜上闹钟（深夜） -->
+  <rect x="900" y="420" width="90" height="70" rx="12" fill="#5B4D78"/>
+  <circle cx="945" cy="450" r="26" fill="#FFF6C9"/>
+  <path d="M945 450v-14M945 450l10 6" stroke="#6E5F4A" stroke-width="4" stroke-linecap="round"/>
+  <!-- 眼药水/水杯 -->
+  <rect x="140" y="410" width="40" height="60" rx="8" fill="#7FC8E8" opacity=".85"/>
+  <rect x="146" y="400" width="28" height="12" rx="6" fill="#5FA8C8"/>
+</svg>
