@@ -60,15 +60,15 @@ export function getLevel(id: number): Level {
   return l
 }
 
-/** 主题关每题固定 4 题 */
-export const THEME_LEVEL_QUESTION_COUNT = 4
-/** 终极关从 16 题池随机抽 10 题 */
+/** 主题关每题固定 10 题 */
+export const THEME_LEVEL_QUESTION_COUNT = 10
+/** 终极关从全部 40 题池随机抽 10 题 */
 export const FINAL_LEVEL_DRAW_COUNT = 10
 
 /**
  * 构建某关的答题队列。
- * - 主题关(1-4)：固定取本关 4 题
- * - 终极关(5)：从全部 16 题池洗牌随机抽 10 题，复用原题与配图
+ * - 主题关(1-4)：固定取本关 10 题
+ * - 终极关(5)：从全部 40 题池洗牌随机抽 10 题，复用原题与配图
  */
 export function buildLevelQuestions(levelId: number): Question[] {
   if (levelId >= 1 && levelId <= 4) {
