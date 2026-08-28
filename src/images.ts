@@ -1,11 +1,11 @@
 // 题目配图解析：数据层只存 q{关}-{题} 前缀，不存扩展名。
-// import.meta.glob 收集 assets/images/ 下所有 svg/png，按前缀匹配，png 优先。
-// AI 精绘 PNG 同名前缀放入后即可自动替换，无需改代码。
+// import.meta.glob 收集 assets/images/ 下所有 svg/webp/png，按前缀匹配，webp 优先。
+// 线上实际使用 webp(压缩后 AI 图)；png 仅本地源头；svg 为手绘底稿兜底。
 
 // 注意：dev / build 下 glob 值形态不同——
 // build 直接给 URL 字符串；dev 给模块命名空间对象(其 .default 才是 URL)。
 // 统一归一为字符串，避免 dev 下把对象拼进模板报 "Cannot convert object to primitive value"。
-const imageGlob = import.meta.glob('../assets/images/*.{svg,png}', {
+const imageGlob = import.meta.glob('../assets/images/*.{svg,webp,png}', {
   eager: true,
   query: '?url',
 }) as Record<string, unknown>
@@ -23,8 +23,9 @@ for (const [key, val] of Object.entries(imageGlob)) {
  * @param prefix 形如 'q1-1'，不含扩展名
  */
 export function imageSrc(prefix: string): string {
+  const webp = byFile.get(`${prefix}.webp`)
   const svg = byFile.get(`${prefix}.svg`)
   const png = byFile.get(`${prefix}.png`)
-  // png 优先（AI 精绘图），否则回退 svg
-  return png ?? svg ?? ''
+  // webp 优先（压缩后 AI 精绘图），其次 png（本地源头/未来手工图），回退 svg 底稿
+  return webp ?? png ?? svg ?? ''
 }

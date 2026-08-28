@@ -17,7 +17,7 @@
 - 题库数据驱动：题目/关卡全部在 `src/data/`，扩题只改数据文件
 - hash 路由（纯静态托管），`vite.config.ts` 必须 `base: './'`；**仅线上部署，不做离线双击版本**
 - **无语音朗读功能**（需求评审砍掉，勿加回）；音效全部 WebAudio 合成，不引入音频文件
-- 题目配图：`assets/images/q{关}-{题}.svg`（首发手绘 SVG，q1-1 ~ q4-4）；数据层不存扩展名，`import.meta.glob` 前缀解析、png 优先，AI 精绘 PNG 同名放入即自动替换
+- 题目配图：40 张 AI WebP（`assets/images/q{关}-{题}.webp`，1152×864 · q82）；数据层不存扩展名，`import.meta.glob` 前缀解析、webp→png→svg 依次优先；源 PNG（2304×1728）仅存 `assets/images-raw/` 不入库。改图链路：`scripts/gen-images.mjs`（按配图清单生成PNG源）→ `scripts/compress-images.mjs`（转WebP）
 - 总积分 = Σ 各关最高分（不单独存储）；存档带 `version` 字段
 - 存档 localStorage key `huaiya-save`；证书默认昵称「小槐芽」
 - 内容底线：无暴力低俗恐怖、无批评说教话术、不全盘否定游戏短视频

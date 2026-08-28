@@ -4,5 +4,6 @@ dist/
 *.local
 .vercel/
 
-# AI 生成的题目配图（未定稿前不纳入版本控制；定稿后再 git add -f 提交）
-assets/images/*.png
+# AI 原始配图（2304×1728 大图）仅本地源头，不入库不进包；
+# 实际使用 images/ 下压缩后的同名 .webp（见 scripts/compress-images.mjs）
+assets/images-raw/

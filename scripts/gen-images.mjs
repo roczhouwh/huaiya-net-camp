@@ -11,7 +11,8 @@ import { fileURLToPath } from 'node:url'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const LIST_MD = path.join(ROOT, 'docs', '配图清单.md')
-const OUT_DIR = path.join(ROOT, 'assets', 'images')
+// PNG 仅本地源头，输出到 images-raw/（不入库不进包）；上线图需再跑 compress-images.mjs 转 webp 到 images/
+const OUT_DIR = path.join(ROOT, 'assets', 'images-raw')
 
 const API_KEY = process.env.ARK_API_KEY
 if (!API_KEY) {
