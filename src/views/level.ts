@@ -5,6 +5,13 @@ import { isLevelUnlocked, recordLevelResult } from '../storage'
 import { playCorrect, playWrong, playSelect, playVictory } from '../audio'
 import type { Question } from '../data/questions'
 
+/** 一枚作答记录，供结算页展示逐题对错与解析 */
+export interface AnswerRecord {
+  q: Question
+  correct: boolean
+  picked: number[]
+}
+
 // 答对鼓励语池（正向、无批评）
 const PRAISE = [
   '太棒了！',
@@ -25,6 +32,7 @@ interface LevelState {
   score: number
   answered: boolean // 当前题是否已作答（锁定选项）
   multiPick: number[] // 多选题已选区
+  results: AnswerRecord[] // 本轮每题作答记录
 }
 
 const S: LevelState = {
@@ -34,13 +42,16 @@ const S: LevelState = {
   score: 0,
   answered: false,
   multiPick: [],
+  results: [],
 }
 
 /** 最近一次通关结果，供结算页展示 */
-let lastResult: { levelId: number; score: number; total: number; questions: Question[] } | null = null
+let lastResult:
+  | { levelId: number; score: number; total: number; questions: Question[]; results: AnswerRecord[] }
+  | null = null
 
 export function getLastResult():
-  | { levelId: number; score: number; total: number; questions: Question[] }
+  | { levelId: number; score: number; total: number; questions: Question[]; results: AnswerRecord[] }
   | null {
   return lastResult
 }
@@ -64,6 +75,7 @@ export function renderLevel(levelId: number): void {
   S.score = 0
   S.answered = false
   S.multiPick = []
+  S.results = []
   drawQuestion(lv)
 }
 
@@ -142,6 +154,7 @@ function syncOptions(): void {
 function judge(q: Question, pick: number[]): void {
   S.answered = true
   const correct = exactMatch(pick, q.answer)
+  S.results.push({ q, correct, picked: pick })
   if (correct) {
     S.score++
     playCorrect()
@@ -149,6 +162,23 @@ function judge(q: Question, pick: number[]): void {
     playWrong()
   }
   paintResult(q, pick, correct)
+}
+
+/** 答对时迸发的星星/彩带粒子（复用 main.css 已定义的 confetti-fall 动画） */
+function burst(): void {
+  const host = document.querySelector('.feedback-host')
+  if (!host) return
+  const COLORS = ['#f6a6b8', '#ffd977', '#8fd69f', '#8fd0f0', '#c9a8e0', '#f0a878']
+  const n = 8 + Math.floor(Math.random() * 7) // 8~14
+  const pieces = Array.from({ length: n }, () => {
+    const left = Math.random() * 100
+    const color = COLORS[Math.floor(Math.random() * COLORS.length)]
+    const delay = Math.random() * 0.25
+    const size = 7 + Math.random() * 7
+    const round = Math.random() > 0.5 ? '50%' : '2px'
+    return `<span class="confetti" style="left:${left}%;width:${size}px;height:${size}px;border-radius:${round};background:${color};animation-delay:${delay}s;--dx:${(Math.random() * 40 - 20).toFixed(0)}px"></span>`
+  }).join('')
+  host.insertAdjacentHTML('afterbegin', `<div class="particles">${pieces}</div>`)
 }
 
 function paintResult(q: Question, pick: number[], correct: boolean): void {
@@ -185,6 +215,7 @@ function paintResult(q: Question, pick: number[], correct: boolean): void {
       </button>
     </div>
   `
+  if (correct) burst() // 面板就位后再在顶部迸发星星粒子
   attachNext()
 }
 
@@ -209,6 +240,12 @@ function attachNext(): void {
 function finishLevel(): void {
   playVictory()
   recordLevelResult(S.levelId, S.score)
-  lastResult = { levelId: S.levelId, score: S.score, total: S.questions.length, questions: S.questions }
+  lastResult = {
+    levelId: S.levelId,
+    score: S.score,
+    total: S.questions.length,
+    questions: S.questions,
+    results: S.results,
+  }
   window.location.hash = `#/result/${S.levelId}`
 }
