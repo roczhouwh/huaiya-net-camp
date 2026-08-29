@@ -19,9 +19,9 @@
 
 ## 在线游玩
 
-🌐 huaiya.535334587.xyz（Vercel 部署待上线）
+🌐 **https://huaiya.535334587.xyz**（已上线，电脑、平板、手机浏览器均可访问）
 
-电脑、平板、手机浏览器均可访问。
+备用直连：https://huaiya-net-camp-7puise6jv-roczhouwhs-projects.vercel.app
 
 ## 本地运行
 
