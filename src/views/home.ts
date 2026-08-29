@@ -1,6 +1,6 @@
 import { mount, on } from '../dom'
 import { clearedMedalCount, clearedThemeCount, isFinalCleared, isSoundOn, resetSave, setSoundOn, totalScore } from '../storage'
-import { playClick } from '../audio'
+import { playClick, syncBgm } from '../audio'
 
 function soundBadge(): string {
   return isSoundOn() ? '🔊' : '🔇'
@@ -61,6 +61,7 @@ export function renderHome(): void {
   on<HTMLButtonElement>(root, '[data-sound]', (btn) => {
     setSoundOn(!isSoundOn())
     playClick()
+    syncBgm() // 总开关同步背景乐：静音即停、开启即恢复
     btn.textContent = soundBadge()
   })
 

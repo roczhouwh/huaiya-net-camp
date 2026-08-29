@@ -7,6 +7,7 @@
 //   #/cert      通关证书
 
 import './styles/main.css'
+import { syncBgm } from './audio'
 import { renderHome } from './views/home'
 import { renderHall } from './views/hall'
 import { renderLevel } from './views/level'
@@ -72,3 +73,6 @@ function route(): void {
 
 window.addEventListener('hashchange', route)
 route()
+
+// 背景音乐受浏览器自动播放限制：首次用户手势（点击）后才解锁 AudioContext 并起 BGM。
+addEventListener('pointerdown', () => syncBgm(), { once: true })
