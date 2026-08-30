@@ -56,6 +56,12 @@ export function getLastResult():
   return lastResult
 }
 
+/** 配图 alt：从题干取一句简短主题描述（避免整段题干与下方 <p> 重复朗读） */
+function imgAlt(q: Question): string {
+  const t = q.text.replace(/[\s。！？,，]+$/, '')
+  return (t.length > 18 ? t.slice(0, 18) + '…' : t) + '的配图'
+}
+
 function exactMatch(pick: number[], answer: number[]): boolean {
   if (pick.length !== answer.length) return false
   const a = [...answer].sort((x, y) => x - y)
@@ -91,7 +97,7 @@ function drawQuestion(lv: ReturnType<typeof getLevel>): void {
       </div>
 
       <div class="scene" data-scene>
-        <img alt="题目配图" src="${imageSrc(q.id)}" />
+        <img alt="${imgAlt(q)}" src="${imageSrc(q.id)}" />
       </div>
 
       <p class="question">${q.text}</p>

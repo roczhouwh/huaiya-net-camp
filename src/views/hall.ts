@@ -26,7 +26,8 @@ export function renderHall(): void {
         const score = getBestScore(lv.id)
         return `
           <div class="level-card lv${lv.id} ${unlocked ? 'unlocked' : 'locked'} ${cleared ? 'cleared' : ''}"
-            data-lv="${lv.id}" ${unlocked ? '' : 'title="先通关上一关解锁"'}>
+            data-lv="${lv.id}"
+            ${unlocked ? `tabindex="0" role="button" aria-label="进入关卡 ${lv.name}"` : 'aria-disabled="true" title="先通关上一关解锁"'}>
             <div class="level-emoji">${lv.emoji}</div>
             <div class="level-info">
               <div class="lv-name">${lv.id === 5 ? '🏆 ' : ''}${lv.name}</div>
@@ -59,5 +60,17 @@ export function renderHall(): void {
     if (!isLevelUnlocked(lvId)) return
     playClick()
     window.location.hash = `#/level/${lvId}`
+  })
+
+  // 键盘可达(a11y)：unlocked 卡片已加 tabindex，Enter/Space 触发进入关卡
+  root.querySelectorAll<HTMLDivElement>('.level-card[tabindex]').forEach((card) => {
+    card.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return
+      e.preventDefault()
+      const lvId = Number(card.dataset.lv)
+      if (!isLevelUnlocked(lvId)) return
+      playClick()
+      window.location.hash = `#/level/${lvId}`
+    })
   })
 }

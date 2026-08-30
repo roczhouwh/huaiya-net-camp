@@ -51,6 +51,12 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+/* 键盘焦点态(a11y)：Tab 聚焦时显示清晰焦点环，鼠标点击不弹环 */
+:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 2px;
+}
+
 #app {
   max-width: 640px;
   margin: 0 auto;
