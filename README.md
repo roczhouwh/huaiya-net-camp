@@ -33,7 +33,7 @@ npm run build    # 构建
 
 ## 技术栈
 
-Vite + TypeScript + 原生 DOM，无框架、无后端；题库 JSON 数据驱动；音效与背景音乐全部 WebAudio 代码合成；证书 Canvas 绘制。
+Vite + TypeScript + 原生 DOM，无框架、无后端；题库 JSON 数据驱动；音效与背景音乐用真实音频文件（`assets/audio/`）；证书 Canvas 绘制。
 
 ## 文档
 

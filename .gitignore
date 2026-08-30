@@ -7,3 +7,5 @@ dist/
 # AI 原始配图（2304×1728 大图）仅本地源头，不入库不进包；
 # 实际使用 images/ 下压缩后的同名 .webp（见 scripts/compress-images.mjs）
 assets/images-raw/
+
+.vercel

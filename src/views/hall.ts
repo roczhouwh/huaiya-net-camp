@@ -1,7 +1,11 @@
 import { mount, on } from '../dom'
 import { LEVELS } from '../data/levels'
-import { getBestScore, isAllCleared, isLevelCleared, isLevelUnlocked, totalScore } from '../storage'
-import { playClick } from '../audio'
+import { getBestScore, isAllCleared, isLevelCleared, isLevelUnlocked, isSoundOn, setSoundOn, totalScore } from '../storage'
+import { playClick, syncBgm } from '../audio'
+
+function soundBadge(): string {
+  return isSoundOn() ? '🔊' : '🔇'
+}
 
 export function renderHall(): void {
   const congrats = isAllCleared()
@@ -10,6 +14,7 @@ export function renderHall(): void {
       <div class="topbar">
         <a href="#/" class="icon-btn" title="返回首页">🏠</a>
         <a href="#/medals" class="icon-btn" title="勋章中心">🎖️</a>
+        <button class="icon-btn" data-sound title="音效开关">${soundBadge()}</button>
       </div>
 
       <h2 class="hall-title">闯关大厅</h2>
@@ -41,6 +46,13 @@ export function renderHall(): void {
       <div class="text-note">顺序解锁：通关上一关，才能挑战下一关</div>
     </div>
   `)
+
+  on<HTMLButtonElement>(root, '[data-sound]', (btn) => {
+    setSoundOn(!isSoundOn())
+    playClick()
+    syncBgm() // 总开关同步背景乐：静音即停、开启即恢复
+    btn.textContent = soundBadge()
+  })
 
   on<HTMLDivElement>(root, '.level-card', (card) => {
     const lvId = Number(card.dataset.lv)

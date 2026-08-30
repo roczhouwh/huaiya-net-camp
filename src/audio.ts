@@ -1,101 +1,93 @@
-// WebAudio 代码合成音效：无音频资源文件。
-// 受浏览器自动播放限制：AudioContext 在首次用户点击后 resume。
+// 真实音频文件播放：音效 + 背景乐。
+// 素材放在 assets/audio/ 下（.mp3/.ogg/.webm，mp3 优先），命名见 assets/audio/README.md。
+// 受浏览器自动播放限制：audio.play() 需在首次用户点击手势后，由 main.ts 首次 pointerdown 时调用 syncBgm() 解锁。
 
 import { isSoundOn } from './storage'
 
-// ===== 静音过渡期 =====
-// 现 WebAudio 合成音效与背景乐效果不理想（且音效开关效果不明显）。
-// 后续将接入正式音频文件（音效 + BGM）。届时把本开关置 false / 重构为文件播放即可启用。
-const AUDIO_DISABLED = true
+// 收集 assets/audio/ 下所有音频，按文件名去扩展名做 key（mp3 → ogg → webm 依次优先）。
+// 复用 images.ts 对 glob 结果的归一化：build 下直接给 URL 字符串；dev 下给模块对象(其 .default 才是 URL)。
+const audioGlob = import.meta.glob('../assets/audio/*.{mp3,ogg,webm}', {
+  eager: true,
+  query: '?url',
+}) as Record<string, unknown>
 
-let ctx: AudioContext | null = null
-
-function getCtx(): AudioContext | null {
-  if (AUDIO_DISABLED) return null // 静音过渡期：不再创建/输出任何合成音
-  if (!isSoundOn()) return null
-  if (!ctx) {
-    const AC = window.AudioContext ?? (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
-    if (!AC) return null
-    ctx = new AC()
+const byName = new Map<string, string>() // 名称(去扩展名) -> url
+// 按格式优先级逐轮写入：mp3 先写，ogg/webm 仅在未命中更高优先级时才写
+for (const ext of ['mp3', 'ogg', 'webm']) {
+  for (const [key, val] of Object.entries(audioGlob)) {
+    const file = key.split('/').pop()?.toLowerCase() ?? ''
+    const dot = file.lastIndexOf('.')
+    const name = file.slice(0, dot)
+    if (file.slice(dot + 1) !== ext) continue
+    if (byName.has(name)) continue // 已命中更高优先级
+    const url = typeof val === 'string' ? val : ((val as { default?: string })?.default ?? '')
+    if (url) byName.set(name, url)
   }
-  if (ctx.state === 'suspended') void ctx.resume()
-  return ctx
 }
 
-function tone(freq: number, start: number, dur: number, type: OscillatorType = 'sine', vol = 0.18): void {
-  const c = getCtx()
-  if (!c) return
-  const osc = c.createOscillator()
-  const gain = c.createGain()
-  const t0 = c.currentTime + start
-  osc.type = type
-  osc.frequency.setValueAtTime(freq, t0)
-  gain.gain.setValueAtTime(0.0001, t0)
-  gain.gain.exponentialRampToValueAtTime(vol, t0 + 0.02)
-  gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur)
-  osc.connect(gain).connect(c.destination)
-  osc.start(t0)
-  osc.stop(t0 + dur + 0.05)
+/** 找出某音效的 url，缺失则返回空串（素材缺失不报错、不打断交互） */
+function getUrl(name: string): string {
+  return byName.get(name) ?? ''
 }
 
-/** 极短点击 tick */
+// ---- 短音效 ----
+// 每次克隆播放，保证连点按钮时能重叠、都从头播（共用同一元素会因未播完而失败）。
+
+function sfx(name: string): void {
+  if (!isSoundOn()) return // 音效总开关关闭时静默
+  const url = getUrl(name)
+  if (!url) return
+  void new Audio(url).play().catch(() => {
+    /* 自动播放限制/加载失败静默 */
+  })
+}
+
+/** 通用点击：与选项选中同款音（点击音复用选中音） */
 export function playClick(): void {
-  tone(880, 0, 0.06, 'triangle', 0.1)
+  sfx('select')
 }
 
-/** 答对：两音上行，短促明亮（C5→E5） */
-export function playCorrect(): void {
-  tone(523.25, 0, 0.12, 'triangle', 0.2)
-  tone(659.25, 0.1, 0.16, 'triangle', 0.2)
-}
-
-/** 答错：单音低柔（A3），无刺耳感 */
-export function playWrong(): void {
-  tone(220, 0, 0.28, 'sine', 0.14)
-}
-
-/** 通关：五音上行小旋律 */
-export function playVictory(): void {
-  const notes = [523.25, 587.33, 659.25, 783.99, 1046.5]
-  notes.forEach((f, i) => tone(f, i * 0.12, 0.2, 'triangle', 0.18))
-}
-
-/** 单选/判断作答：先点一个音，鼓励后再上行 */
+/** 单选/判断作答：选中一个选项 */
 export function playSelect(): void {
-  tone(659.25, 0, 0.08, 'triangle', 0.12)
+  sfx('select')
 }
 
-// ---- 背景音乐（BGM）：极简柔和循环琶音，音量极低，联动音效总开关 ----
+/** 答对 */
+export function playCorrect(): void {
+  sfx('correct')
+}
 
-/** C 大调温柔旋律：上行琶音后回落，营造轻松氛围 */
-const BGM_MELODY = [261.63, 329.63, 392, 440, 523.25, 440, 392, 329.63]
-/** 每步间隔(ms)与单音时长(ms)，让音略有微叠保持连贯又不黏着 */
-const BGM_STEP = 500
-const BGM_NOTE_DUR = 550
-const BGM_VOL = 0.04
+/** 答错（现复用 click 音充当，未来有更合适的答错音替换 wrong.mp3 即可） */
+export function playWrong(): void {
+  sfx('wrong')
+}
 
-let bgmTimer: ReturnType<typeof setInterval> | null = null
-let bgmStep = 0
+/** 单关通关 */
+export function playVictory(): void {
+  sfx('victory')
+}
 
-/** 启动 BGM：仅音效开启且尚未播放时启动；复用 tone() 的淡入淡出防爆音 */
+// ---- 背景音乐（BGM）：长循环 <audio>，联动音效总开关 ----
+
+const bgm = new Audio()
+bgm.loop = true
+bgm.preload = 'auto'
+
+/** 启动 BGM：仅音效开启且已找到素材时启动 */
 export function startBgm(): void {
-  if (bgmTimer != null || !isSoundOn()) return
-  if (!getCtx()) return // 创建并 resume 失败（音效关/不支持）则静默
-  bgmStep = 0
-  bgmTimer = setInterval(() => {
-    const f = BGM_MELODY[bgmStep % BGM_MELODY.length]
-    tone(f, 0, BGM_NOTE_DUR, 'sine', BGM_VOL) // 主旋律
-    tone(f / 2, 0, 900, 'sine', BGM_VOL - 0.01) // 低八度柔和垫底
-    bgmStep++
-  }, BGM_STEP)
+  if (isSoundOn() && bgm.paused) {
+    const url = getUrl('bgm')
+    if (!url) return
+    if (bgm.src !== url) bgm.src = url
+    void bgm.play().catch(() => {
+      /* 自动播放限制/加载失败静默 */
+    })
+  }
 }
 
 /** 停止 BGM */
 export function stopBgm(): void {
-  if (bgmTimer != null) {
-    clearInterval(bgmTimer)
-    bgmTimer = null
-  }
+  if (!bgm.paused) bgm.pause()
 }
 
 /** 按音效总开关同步 BGM：开则启动、关则停 */
